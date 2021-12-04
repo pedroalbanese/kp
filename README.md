@@ -81,10 +81,3 @@ go build -gcflags "-N -I ." -ldflags "-X main.VersionRevision=`git show | head -
 
 ## Overview
 There are two main components, the shell and the libraries that interact with the database directly.  The shell interfaces with the database through those abstractionsso that the actual logic is the same for v1 and v2.  The shell works by having individual files for each command which are strung together in `main.go`.
-
-# Future plans
-In priority order:
-
-1. finish v2 by adding feature to add and remove fields as well as throwing in some more testing
-1. fill in test coverage
-1. implement for other systems, such as `pass`, because why not?
