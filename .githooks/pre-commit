@@ -1,5 +1,0 @@
-#!/bin/bash
-if ! ./scripts/lint.sh; then
-  echo "linter failed!"
-  exit 1
-fi
