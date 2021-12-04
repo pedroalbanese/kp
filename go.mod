@@ -1,6 +1,6 @@
 module github.com/mostfunkyduck/kp
 
-go 1.14
+go 1.12
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.1.1
