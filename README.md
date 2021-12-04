@@ -1,4 +1,10 @@
 # KP
+[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/kp/blob/master/LICENSE.md) 
+[![GoDoc](https://godoc.org/github.com/pedroalbanese/kp?status.png)](http://godoc.org/github.com/pedroalbanese/kp)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/kp)](https://goreportcard.com/report/github.com/pedroalbanese/kp)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/kp)](https://golang.org)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/pedroalbanese/kp)](https://github.com/pedroalbanese/kp/releases)
+
 This project is a reimplementation of [kpcli](http://kpcli.sourceforge.net/) with a few additional features thrown in.  It provides a shell-like interface for navigating a keepass database and manipulating entries.
 
 Currently, a full reimplementation of all of kpcli's features is still under development, but other features, such as `search` have been added.
