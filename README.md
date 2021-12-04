@@ -12,9 +12,9 @@ Currently, a full reimplementation of all of kpcli's features is still under dev
 keepassv2+ has also been implemented, but is still very incomplete - treat it as alpha software.  It is also advisable to not use v2 at all outside of development as it's incomplete and may have edge cases where corruption can occur.
 
 keepassv1, however, is stable and fit for use
-# Usage
+## Usage
 
-## Command-line
+### Command-line
 ```
 > ./kp -help
 Usage of ./kp:
@@ -30,7 +30,7 @@ Usage of ./kp:
         print version and exit
 ```
 
-## Program Shell
+### Program Shell
 ```
 / > help
 
