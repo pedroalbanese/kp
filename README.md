@@ -64,20 +64,5 @@ Commands:
   get          attach get <entry> <filesystem location>
 ```
 
-# Building
-Running `make` will deploy the git hooks, lint the repo, run all the tests, then compile `kp`.  To deploy to `/usr/local/bin`, run `sudo make install`
-```
-> make
-git config core.hooksPath .githooks
-./scripts/lint.sh || exit 1
-KPVERSION=1 go test . ./keepass/keepassv1 -coverprofile coverage.out -coverpkg=.,./keepass,./keepass/common,./keepass/keepassv1
-ok      github.com/mostfunkyduck/kp     0.093s  coverage: 36.6% of statements in ., ./keepass, ./keepass/common, ./keepass/keepassv1
-ok      github.com/mostfunkyduck/kp/keepass/keepassv1   0.799s  coverage: 19.3% of statements in ., ./keepass, ./keepass/common, ./keepass/keepassv1
-KPVERSION=2 go test . ./keepass/keepassv2 -coverprofile coverage.out -coverpkg=.,./keepass,./keepass/common,./keepass/keepassv2
-ok      github.com/mostfunkyduck/kp     0.091s  coverage: 41.5% of statements in ., ./keepass, ./keepass/common, ./keepass/keepassv2
-ok      github.com/mostfunkyduck/kp/keepass/keepassv2   0.087s  coverage: 25.0% of statements in ., ./keepass, ./keepass/common, ./keepass/keepassv2
-go build -gcflags "-N -I ." -ldflags "-X main.VersionRevision=`git show | head -1 | awk '{print $NF}' | cut -c 1-5` -X main.VersionBuildDate=`date -u +%Y-%m-%d-%H-%M` -X main.VersionBuildTZ=UTC -X main.VersionBranch=`git branch 2>/dev/null | grep '\*' | sed "s/* //"` -X main.VersionRelease=0.1 -X main.VersionHostname=`hostname`"
-```
-
 ## Overview
 There are two main components, the shell and the libraries that interact with the database directly.  The shell interfaces with the database through those abstractionsso that the actual logic is the same for v1 and v2.  The shell works by having individual files for each command which are strung together in `main.go`.
