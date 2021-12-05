@@ -8,7 +8,6 @@ import (
 
 	"github.com/abiosoft/ishell"
 	v1 "github.com/pedroalbanese/kp/internal/backend/keepassv1"
-	v2 "github.com/pedroalbanese/kp/internal/backend/keepassv2"
 	t "github.com/pedroalbanese/kp/internal/backend/types"
 	"github.com/pedroalbanese/kp/internal/commands"
 )
@@ -16,14 +15,13 @@ import (
 var (
 	keyFile        = flag.String("key", "", "a key file to use to unlock the db")
 	dbFile         = flag.String("db", "", "the db to open")
-	keepassVersion = flag.Int("kpversion", 1, "which version of keepass to use (1 or 2)")
-	version        = flag.Bool("version", false, "print version and exit")
 	noninteractive = flag.String("n", "", "execute a given command and exit")
+	version        = flag.Bool("version", false, "print version and exit")
 )
 
-func buildVersionString() string {
-	return fmt.Sprintf("%s.%s-%s.%s (built on %s from %s)", VersionRelease, VersionBuildDate, VersionBuildTZ, VersionBranch, VersionHostname, VersionRevision)
-}
+const (
+	buildVersionString = "0.0.2"
+)
 
 func promptForDBPassword(shell *ishell.Shell) (string, error) {
 	shell.Print("enter database password: ")
@@ -32,14 +30,7 @@ func promptForDBPassword(shell *ishell.Shell) (string, error) {
 
 func newDB(dbPath string, password string, keyPath string, version int) (t.Database, error) {
 	var dbWrapper t.Database
-	switch version {
-	case 2:
-		dbWrapper = &v2.Database{}
-	case 1:
-		dbWrapper = &v1.Database{}
-	default:
-		return nil, fmt.Errorf("invalid version '%d'", version)
-	}
+	dbWrapper = &v1.Database{}
 	dbOpts := t.Options{
 		DBPath:   dbPath,
 		Password: password,
@@ -54,7 +45,7 @@ func main() {
 
 	shell := ishell.New()
 	if *version {
-		shell.Printf("version: %s\n", buildVersionString())
+		shell.Printf("version: %s\n", buildVersionString)
 		os.Exit(1)
 	}
 
@@ -83,7 +74,7 @@ func main() {
 			}
 		}
 
-		dbWrapper, err = newDB(dbPath, password, keyPath, *keepassVersion)
+		dbWrapper, err = newDB(dbPath, password, keyPath, 1)
 		if err != nil {
 			shell.Printf("could not open database: %s\n", err)
 			if passwordInEnv {
@@ -245,7 +236,7 @@ func main() {
 		Help:     "version",
 		LongHelp: "prints version",
 		Func: func(c *ishell.Context) {
-			shell.Printf("version: %s\n", buildVersionString())
+			shell.Printf("version: %s\n", buildVersionString)
 		},
 	})
 
