@@ -76,4 +76,4 @@ There are two main components, the shell and the libraries that interact with th
 ## License
 
 This project is licensed under the ISC License.
-#### Copyright (c) 2020-2021 Pedro Albanese - ALBANESE Research Lab.
+#### Copyright (c) 2020-2021 ALBANESE Research Lab.
