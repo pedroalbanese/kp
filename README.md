@@ -5,9 +5,9 @@
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/kp)](https://golang.org)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/pedroalbanese/kp)](https://github.com/pedroalbanese/kp/releases)
 
-This project is a reimplementation of [kpcli](http://kpcli.sourceforge.net/) with a few additional features thrown in.  It provides a shell-like interface for navigating a Keepass V1 database and manipulating entries. 
+This project is a reimplementation of [kpcli](http://kpcli.sourceforge.net/) with a few additional features thrown in.  It provides a shell-like interface for navigating a KeePass V1 database and manipulating entries. 
 
-Features, such as `search` have been added. If you need Keepass Version 2 support, go to https://github.com/mostfunkyduck/kp.
+Features, such as `search` have been added. If you need KeePass Version 2 support, go to https://github.com/mostfunkyduck/kp.
 ## Usage
 
 ### Command-line
@@ -37,7 +37,7 @@ Commands:
   help         display help
   ls           ls [path]
   mkdir        mkdir <group name>
-  mv           mv <soruce> <destination>
+  mv           mv <source> <destination>
   new          new <path>
   pwd          pwd
   rm           rm <entry>
