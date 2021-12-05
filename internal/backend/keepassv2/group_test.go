@@ -3,7 +3,7 @@ package keepassv2_test
 import (
 	"testing"
 
-	runner "github.com/mostfunkyduck/kp/internal/backend/tests"
+	runner "github.com/pedroalbanese/kp/internal/backend/tests"
 )
 
 func TestNestedSubGroupPath(t *testing.T) {

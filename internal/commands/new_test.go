@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/mostfunkyduck/kp/internal/backend/types"
-	main "github.com/mostfunkyduck/kp/internal/commands"
+	"github.com/pedroalbanese/kp/internal/backend/types"
+	main "github.com/pedroalbanese/kp/internal/commands"
 )
 
 // prepares stdin to fill out a new entry with default values and decline to save

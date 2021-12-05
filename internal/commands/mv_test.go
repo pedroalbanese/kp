@@ -3,7 +3,7 @@ package commands_test
 import (
 	"testing"
 
-	main "github.com/mostfunkyduck/kp/internal/commands"
+	main "github.com/pedroalbanese/kp/internal/commands"
 )
 
 func TestMv(t *testing.T) {

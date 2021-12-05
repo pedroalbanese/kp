@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/abiosoft/ishell"
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func listAttachment(entry t.Entry) (s string, err error) {

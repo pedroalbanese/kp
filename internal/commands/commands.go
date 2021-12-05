@@ -14,8 +14,8 @@ import (
 
 	"github.com/abiosoft/ishell"
 	"github.com/atotto/clipboard"
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 	"github.com/sethvargo/go-password/password"
 )
 
@@ -151,7 +151,7 @@ func promptForEntry(shell *ishell.Shell, e t.Entry, title string) error {
 func OpenFileInEditor(filename string) error {
 	editor := os.Getenv("EDITOR")
 	if editor == "" {
-		editor = "vim" // because use vim or you're a troglodyte
+		editor = "micro" // because use micro or you're a troglodyte
 	}
 
 	// Get the full executable path for the editor.

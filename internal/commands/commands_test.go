@@ -11,10 +11,10 @@ import (
 
 	"github.com/abiosoft/ishell"
 	"github.com/abiosoft/readline"
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	v1 "github.com/mostfunkyduck/kp/internal/backend/keepassv1"
-	v2 "github.com/mostfunkyduck/kp/internal/backend/keepassv2"
-	"github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	v1 "github.com/pedroalbanese/kp/internal/backend/keepassv1"
+	v2 "github.com/pedroalbanese/kp/internal/backend/keepassv2"
+	"github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 // the Write() method can't store output locally b/c it isn't a pointer target

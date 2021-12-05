@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/abiosoft/ishell"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func NewEntry(shell *ishell.Shell) (f func(c *ishell.Context)) {

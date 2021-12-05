@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	main "github.com/mostfunkyduck/kp/internal/commands"
+	main "github.com/pedroalbanese/kp/internal/commands"
 )
 
 func createGroup(group string, r testResources) error {

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 type Entry struct {

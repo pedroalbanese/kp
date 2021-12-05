@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/abiosoft/ishell"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func finish(shell *ishell.Shell) {

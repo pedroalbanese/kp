@@ -4,10 +4,10 @@ import (
 	"strings"
 	"testing"
 
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	main "github.com/mostfunkyduck/kp/internal/backend/keepassv2"
-	runner "github.com/mostfunkyduck/kp/internal/backend/tests"
-	"github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	main "github.com/pedroalbanese/kp/internal/backend/keepassv2"
+	runner "github.com/pedroalbanese/kp/internal/backend/tests"
+	"github.com/pedroalbanese/kp/internal/backend/types"
 	g "github.com/tobischo/gokeepasslib/v3"
 )
 

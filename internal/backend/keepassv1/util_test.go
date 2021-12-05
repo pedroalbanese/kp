@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	v1 "github.com/mostfunkyduck/kp/internal/backend/keepassv1"
-	runner "github.com/mostfunkyduck/kp/internal/backend/tests"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	v1 "github.com/pedroalbanese/kp/internal/backend/keepassv1"
+	runner "github.com/pedroalbanese/kp/internal/backend/tests"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func initDatabase() (t.Database, error) {

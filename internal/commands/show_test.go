@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/abiosoft/ishell"
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	"github.com/mostfunkyduck/kp/internal/backend/types"
-	main "github.com/mostfunkyduck/kp/internal/commands"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	"github.com/pedroalbanese/kp/internal/backend/types"
+	main "github.com/pedroalbanese/kp/internal/commands"
 )
 
 func testShowOutput(output string, substr string, t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 type Group struct {

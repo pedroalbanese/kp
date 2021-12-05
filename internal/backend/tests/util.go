@@ -1,7 +1,7 @@
 package tests
 
 import (
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 type Resources struct {

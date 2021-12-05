@@ -4,7 +4,7 @@ import (
 	"regexp"
 
 	"github.com/abiosoft/ishell"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 // This implements the equivalent of kpcli's "find" command, just with a name

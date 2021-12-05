@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"regexp"
 
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 	g "github.com/tobischo/gokeepasslib/v3"
 )
 

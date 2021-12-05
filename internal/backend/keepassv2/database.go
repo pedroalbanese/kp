@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 	g "github.com/tobischo/gokeepasslib/v3"
 )
 

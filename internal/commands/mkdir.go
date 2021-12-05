@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/abiosoft/ishell"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func NewGroup(shell *ishell.Shell) (f func(c *ishell.Context)) {

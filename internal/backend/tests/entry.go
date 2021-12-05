@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	"github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	"github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func RunTestNoParent(t *testing.T, r Resources) {

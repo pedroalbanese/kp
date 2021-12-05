@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/mostfunkyduck/kp/internal/backend/types"
+	"github.com/pedroalbanese/kp/internal/backend/types"
 )
 
 func findGroupInGroup(parent types.Group, child types.Group) bool {

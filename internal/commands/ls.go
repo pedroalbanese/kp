@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 	"github.com/abiosoft/ishell"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 	"strings"
 )
 

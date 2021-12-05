@@ -3,7 +3,7 @@ package keepassv1_test
 import (
 	"testing"
 
-	v1 "github.com/mostfunkyduck/kp/internal/backend/keepassv1"
+	v1 "github.com/pedroalbanese/kp/internal/backend/keepassv1"
 )
 
 func TestSavePath(t *testing.T) {

@@ -3,8 +3,8 @@ package keepassv1
 import (
 	"fmt"
 
-	c "github.com/mostfunkyduck/kp/internal/backend/common"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
+	c "github.com/pedroalbanese/kp/internal/backend/common"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
 	"zombiezen.com/go/sandpass/pkg/keepass"
 )
 
