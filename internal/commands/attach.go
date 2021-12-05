@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strconv"
@@ -23,12 +24,16 @@ func listAttachment(entry t.Entry) (s string, err error) {
 }
 
 func getAttachment(entry t.Entry, outputLocation string) (s string, err error) {
-	f, err := os.Create(outputLocation)
-	if err != nil {
-		err = fmt.Errorf("could not open [%s]", outputLocation)
-		return
+	var f io.Writer
+	if outputLocation == "-" {
+		f = os.Stdout
+	} else {
+		f, err = os.Create(outputLocation)
+		if err != nil {
+			err = fmt.Errorf("could not open [%s]", outputLocation)
+			return
+		}
 	}
-	defer f.Close()
 
 	attachment := entry.Get("attachment")
 	if len(attachment.Value()) == 0 {
@@ -117,9 +122,6 @@ func runAttachCommands(args []string, cmd string, entry t.Entry, shell *ishell.S
 		}
 
 		outputLocation := args[1]
-		if !confirmOverwrite(shell, outputLocation) {
-			return "aborting", nil
-		}
 		return getAttachment(entry, outputLocation)
 	case "details":
 		return listAttachment(entry)
