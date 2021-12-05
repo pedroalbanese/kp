@@ -7,10 +7,10 @@ import (
 	"strings"
 
 	"github.com/abiosoft/ishell"
-	v1 "github.com/mostfunkyduck/kp/internal/backend/keepassv1"
-	v2 "github.com/mostfunkyduck/kp/internal/backend/keepassv2"
-	t "github.com/mostfunkyduck/kp/internal/backend/types"
-	"github.com/mostfunkyduck/kp/internal/commands"
+	v1 "github.com/pedroalbanese/kp/internal/backend/keepassv1"
+	v2 "github.com/pedroalbanese/kp/internal/backend/keepassv2"
+	t "github.com/pedroalbanese/kp/internal/backend/types"
+	"github.com/pedroalbanese/kp/internal/commands"
 )
 
 var (
@@ -20,80 +20,6 @@ var (
 	version        = flag.Bool("version", false, "print version and exit")
 	noninteractive = flag.String("n", "", "execute a given command and exit")
 )
-
-func fileCompleter(shell *ishell.Shell, printEntries bool) func(string, []string) []string {
-	return func(searchPrefix string, searchTargets []string) (ret []string) {
-		searchPrefixParts := strings.Split(searchPrefix, "/")
-
-		searchLocation := ""
-		searchTarget := ""
-		if len(searchPrefixParts) > 1 {
-			searchLocation = strings.Join(searchPrefixParts[0:len(searchPrefixParts)-1], "/")
-			searchTarget = searchPrefixParts[len(searchPrefixParts)-1]
-		}
-
-		if len(searchTargets) > 0 {
-			fullSearchTarget := strings.Join(searchTargets, " ")
-
-			searchTargetParts := strings.Split(fullSearchTarget, "/")
-
-			searchTarget = searchTargetParts[len(searchTargetParts)-1]
-
-			searchTarget = strings.ReplaceAll(searchTarget, "\\ ", " ")
-
-			if searchLocation == "" {
-				searchLocation = strings.Join(searchTargetParts[0:len(searchTargetParts)-1], "/")
-			}
-		}
-		db := shell.Get("db").(t.Database)
-		location, _, err := commands.TraversePath(db, db.CurrentLocation(), searchLocation)
-
-		if err != nil {
-			return
-		}
-
-		if location == nil {
-			location = db.CurrentLocation()
-		}
-
-		returnedPrefix := ""
-		doCompletion := searchPrefix == "" || len(searchTargets) >= 1
-		if searchLocation != "" {
-			returnedPrefix = searchLocation + "/"
-		}
-
-		for _, g := range location.Groups() {
-
-			if !strings.HasPrefix(g.Name(), searchTarget) {
-				continue
-			}
-
-			if searchTarget != "" && doCompletion {
-				completedName := strings.Replace(g.Name(), searchTarget, "", 1)
-				ret = append(ret, strings.TrimLeft(completedName, " "))
-				continue
-			}
-			ret = append(ret, fmt.Sprintf("%s%s/", returnedPrefix, g.Name()))
-		}
-
-		if printEntries {
-			for _, e := range location.Entries() {
-				if !strings.HasPrefix(e.Title(), searchTarget) {
-					continue
-				}
-				if searchTarget != "" && doCompletion {
-					completedTitle := strings.Replace(e.Title(), searchTarget, "", 1)
-					ret = append(ret, strings.TrimLeft(completedTitle, " "))
-					continue
-				}
-
-				ret = append(ret, fmt.Sprintf("%s%s", returnedPrefix, e.Title()))
-			}
-		}
-
-		return ret
-	}
-}
 
 func buildVersionString() string {
 	return fmt.Sprintf("%s.%s-%s.%s (built on %s from %s)", VersionRelease, VersionBuildDate, VersionBuildTZ, VersionBranch, VersionHostname, VersionRevision)
@@ -174,24 +100,21 @@ func main() {
 	shell.SetPrompt(fmt.Sprintf("/%s > ", dbWrapper.CurrentLocation().Name()))
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "ls",
-		Help:                "ls [path]",
-		Func:                commands.Ls(shell),
-		CompleterWithPrefix: fileCompleter(shell, true),
+		Name: "ls",
+		Help: "ls [path]",
+		Func: commands.Ls(shell),
 	})
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "new",
-		Help:                "new <path>",
-		LongHelp:            "creates a new entry at <path>",
-		Func:                commands.NewEntry(shell),
-		CompleterWithPrefix: fileCompleter(shell, false),
+		Name:     "new",
+		Help:     "new <path>",
+		LongHelp: "creates a new entry at <path>",
+		Func:     commands.NewEntry(shell),
 	})
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "mkdir",
-		LongHelp:            "create a new group",
-		Help:                "mkdir <group name>",
-		Func:                commands.NewGroup(shell),
-		CompleterWithPrefix: fileCompleter(shell, false),
+		Name:     "mkdir",
+		LongHelp: "create a new group",
+		Help:     "mkdir <group name>",
+		Func:     commands.NewGroup(shell),
 	})
 	shell.AddCmd(&ishell.Cmd{
 		Name:     "saveas",
@@ -202,27 +125,24 @@ func main() {
 
 	if dbWrapper.Version() == t.V2 {
 		shell.AddCmd(&ishell.Cmd{
-			Name:                "select",
-			Help:                "select [-f] <entry>",
-			LongHelp:            "shows details on a given value in an entry, passwords will be redacted unless '-f' is specified",
-			Func:                commands.Select(shell),
-			CompleterWithPrefix: fileCompleter(shell, true),
+			Name:     "select",
+			Help:     "select [-f] <entry>",
+			LongHelp: "shows details on a given value in an entry, passwords will be redacted unless '-f' is specified",
+			Func:     commands.Select(shell),
 		})
 	}
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "show",
-		Help:                "show [-f] <entry>",
-		LongHelp:            "shows details on a given entry, passwords will be redacted unless '-f' is specified",
-		Func:                commands.Show(shell),
-		CompleterWithPrefix: fileCompleter(shell, true),
+		Name:     "show",
+		Help:     "show [-f] <entry>",
+		LongHelp: "shows details on a given entry, passwords will be redacted unless '-f' is specified",
+		Func:     commands.Show(shell),
 	})
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "cd",
-		Help:                "cd <path>",
-		LongHelp:            "changes the current group to a different path",
-		Func:                commands.Cd(shell),
-		CompleterWithPrefix: fileCompleter(shell, false),
+		Name:     "cd",
+		Help:     "cd <path>",
+		LongHelp: "changes the current group to a different path",
+		Func:     commands.Cd(shell),
 	})
 
 	attachCmd := &ishell.Cmd{
@@ -231,58 +151,51 @@ func main() {
 		Help:     "attach <get|show|delete> <entry> <filesystem location>",
 	}
 	attachCmd.AddCmd(&ishell.Cmd{
-		Name:                "create",
-		Help:                "attach create <entry> <name> <filesystem location>",
-		LongHelp:            "creates a new attachment based on a local file",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Attach(shell, "create"),
+		Name:     "create",
+		Help:     "attach create <entry> <name> <filesystem location>",
+		LongHelp: "creates a new attachment based on a local file",
+		Func:     commands.Attach(shell, "create"),
 	})
 	attachCmd.AddCmd(&ishell.Cmd{
-		Name:                "get",
-		Help:                "attach get <entry> <filesystem location>",
-		LongHelp:            "retrieves an attachment and outputs it to a filesystem location",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Attach(shell, "get"),
+		Name:     "get",
+		Help:     "attach get <entry> <filesystem location>",
+		LongHelp: "retrieves an attachment and outputs it to a filesystem location",
+		Func:     commands.Attach(shell, "get"),
 	})
 	attachCmd.AddCmd(&ishell.Cmd{
-		Name:                "details",
-		Help:                "attach details <entry>",
-		LongHelp:            "shows the details of the attachment on an entry",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Attach(shell, "details"),
+		Name:     "details",
+		Help:     "attach details <entry>",
+		LongHelp: "shows the details of the attachment on an entry",
+		Func:     commands.Attach(shell, "details"),
 	})
 	shell.AddCmd(attachCmd)
 
 	shell.AddCmd(&ishell.Cmd{
-		LongHelp:            "searches for any entries with the regular expression '<term>' in their titles or contents",
-		Name:                "search",
-		Help:                "search <term>",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Search(shell),
+		LongHelp: "searches for any entries with the regular expression '<term>' in their titles or contents",
+		Name:     "search",
+		Help:     "search <term>",
+		Func:     commands.Search(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "rm",
-		Help:                "rm <entry>",
-		LongHelp:            "removes an entry",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Rm(shell),
+		Name:     "rm",
+		Help:     "rm <entry>",
+		LongHelp: "removes an entry",
+		Func:     commands.Rm(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "xp",
-		Help:                "xp <entry>",
-		LongHelp:            "copies a password to the clipboard",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Xp(shell),
+		Name:     "xp",
+		Help:     "xp <entry>",
+		LongHelp: "copies a password to the clipboard",
+		Func:     commands.Xp(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "edit",
-		Help:                "edit <entry>",
-		LongHelp:            "edits an existing entry",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Edit(shell),
+		Name:     "edit",
+		Help:     "edit <entry>",
+		LongHelp: "edits an existing entry",
+		Func:     commands.Edit(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
@@ -307,27 +220,24 @@ func main() {
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "xu",
-		Help:                "xu",
-		LongHelp:            "copies username to the clipboard",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Xu(shell),
+		Name:     "xu",
+		Help:     "xu",
+		LongHelp: "copies username to the clipboard",
+		Func:     commands.Xu(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "xw",
-		Help:                "xw",
-		LongHelp:            "copies url to clipboard",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Xw(shell),
+		Name:     "xw",
+		Help:     "xw",
+		LongHelp: "copies url to clipboard",
+		Func:     commands.Xw(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name:                "mv",
-		Help:                "mv <soruce> <destination>",
-		LongHelp:            "moves entries between groups",
-		CompleterWithPrefix: fileCompleter(shell, true),
-		Func:                commands.Mv(shell),
+		Name:     "mv",
+		Help:     "mv <soruce> <destination>",
+		LongHelp: "moves entries between groups",
+		Func:     commands.Mv(shell),
 	})
 
 	shell.AddCmd(&ishell.Cmd{
