@@ -226,7 +226,7 @@ func main() {
 
 	shell.AddCmd(&ishell.Cmd{
 		Name:     "mv",
-		Help:     "mv <soruce> <destination>",
+		Help:     "mv <source> <destination>",
 		LongHelp: "moves entries between groups",
 		Func:     commands.Mv(shell),
 	})
