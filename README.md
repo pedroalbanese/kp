@@ -18,8 +18,6 @@ Usage of ./kp:
         the db to open
   -key string
         a key file to use to unlock the db
-  -kpversion int
-        which version of keepass to use (1 or 2) (default 1)
   -n string
         execute a given command and exit
   -version
