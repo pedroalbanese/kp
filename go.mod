@@ -1,4 +1,4 @@
-module github.com/mostfunkyduck/kp
+module github.com/pedroalbanese/kp
 
 go 1.12
 
