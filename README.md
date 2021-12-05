@@ -5,13 +5,9 @@
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/kp)](https://golang.org)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/pedroalbanese/kp)](https://github.com/pedroalbanese/kp/releases)
 
-This project is a reimplementation of [kpcli](http://kpcli.sourceforge.net/) with a few additional features thrown in.  It provides a shell-like interface for navigating a keepass database and manipulating entries.
+This project is a reimplementation of [kpcli](http://kpcli.sourceforge.net/) V1 with a few additional features thrown in.  It provides a shell-like interface for navigating a keepass database and manipulating entries.
 
 Currently, a full reimplementation of all of kpcli's features is still under development, but other features, such as `search` have been added.
-
-keepassv2+ has also been implemented, but is still very incomplete - treat it as alpha software.  It is also advisable to not use v2 at all outside of development as it's incomplete and may have edge cases where corruption can occur.
-
-keepassv1, however, is stable and fit for use
 ## Usage
 
 ### Command-line
