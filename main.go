@@ -179,7 +179,7 @@ func main() {
 	})
 	attachCmd.AddCmd(&ishell.Cmd{
 		Name:                "get",
-		Help:                "attach get <entry> <filesystem location>",
+		Help:                "attach get <entry> <filesystem location> // ('-' for stdout)",
 		LongHelp:            "retrieves an attachment and outputs it to a filesystem location",
 		Func:                commands.Attach(shell, "get"),
 	})
