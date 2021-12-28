@@ -1,5 +1,6 @@
 # KP
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/kp/blob/master/LICENSE.md) 
+[![GitHub downloads](https://img.shields.io/github/downloads/pedroalbanese/gosttk/total.svg?logo=github&logoColor=white)](https://github.com/pedroalbanese/gosttk/releases)
 [![GoDoc](https://godoc.org/github.com/pedroalbanese/kp?status.png)](http://godoc.org/github.com/pedroalbanese/kp)
 [![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/kp)](https://goreportcard.com/report/github.com/pedroalbanese/kp)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/kp)](https://golang.org)
