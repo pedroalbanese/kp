@@ -301,6 +301,39 @@ func copyFromEntry(shell *ishell.Shell, targetPath string, entryData string) err
 	return nil
 }
 
+func getFromEntry(shell *ishell.Shell, targetPath string, entryData string) error {
+	entry, ok := getEntryByPath(shell, targetPath)
+	if !ok {
+		return fmt.Errorf("could not retrieve entry at path '%s'\n", targetPath)
+	}
+
+	var data string
+	switch strings.ToLower(entryData) {
+	// FIXME hardcoded values
+	case "username":
+		// FIXME rewire this so that the entry provides the copy function
+		data = string(entry.Get("username").Value())
+	case "password":
+		data = entry.Password()
+	case "url":
+		data = string(entry.Get("URL").Value())
+	default:
+		return fmt.Errorf("'%s' was not a valid entry data type", entryData)
+	}
+
+	if data == "" {
+		shell.Printf("warning! '%s' is an empty field!\n", entryData)
+	}
+
+	if _, err := fmt.Println(data); err != nil {
+		return fmt.Errorf("could not write %s to clipboard: %s\n", entryData, err)
+	}
+	entry.SetLastAccessTime(time.Now())
+	fmt.Fprintln(os.Stderr, "(access time has been updated, will be persisted on next save)")
+	return nil
+}
+
+
 // confirmOverwrite prompts the user about overwriting a given file
 // it returns whether or not the user wants to overwrite
 func confirmOverwrite(shell *ishell.Shell, path string) bool {
