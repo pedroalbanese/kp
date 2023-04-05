@@ -8,7 +8,6 @@
 
 This project is a reimplementation of [kpcli](http://kpcli.sourceforge.net/) with a few additional features thrown in.  It provides a shell-like interface for navigating a KeePass V1 database and manipulating entries. 
 
-Features, such as `search` have been added. If you need KeePass Version 2 support, go to https://github.com/mostfunkyduck/kp.
 ## Usage
 
 ### Command-line
